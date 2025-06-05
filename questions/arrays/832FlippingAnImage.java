@@ -2,11 +2,14 @@ package questions.arrays;
 
 class Solution {
     public int[][] flipAndInvertImage(int[][] image) {
+        int[][] ans = new int[image.length][image[0].length];
+        int i = 0;
         for(int[] row : image){
             row = reverse(row);
             row = invert(row);
+            ans[i++] = row;
         }
-        return image;
+        return ans;
     }
 
     public int[] reverse(int[] arr){
@@ -17,32 +20,6 @@ class Solution {
         return temp;
     }
     public int[] invert(int[] arr){
-        int[] temp = new int[arr.length];
-        for(int i = 0; i < arr.length; i++){
-            temp[i] = (arr[i] == 0) ? 1 : 0;
-        }
-        return temp;
-    }
-}
-
-public class 832FlippingAnImage{
-    public static void main(String[] args){
-        int[][] image = {{1,1,0},{1,0,1},{0,0,0}};
-        for(int[] row : image){
-            row = reverseL(row);
-            
-            row = invertL(row);
-        }
-        
-    }
-    public static int[] reverseL(int[] arr){
-        int[] temp = new int[arr.length];
-        for(int i = 0, j = arr.length-1; i < arr.length; i++, j--){
-            temp[i] = arr[j];
-        }
-        return temp;
-    }
-    public static int[] invertL(int[] arr){
         int[] temp = new int[arr.length];
         for(int i = 0; i < arr.length; i++){
             temp[i] = (arr[i] == 0) ? 1 : 0;

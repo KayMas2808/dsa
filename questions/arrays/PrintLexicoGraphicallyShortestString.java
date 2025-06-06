@@ -4,9 +4,19 @@ class Solution {
     public String robotWithString(String s) {
         String t = "";
         String p = "";
+        char[] sArr = s.toCharArray();
+        for(int i = 0; i < sArr.length - 1; i++){
+            if (sArr[i] > sArr[i + 1]){
+                String[] th = op1(s, t);
+                s = th[0];
+                t = th[1];
+            }
+            else if(sArr){}
+        }
         return p;
     }
     public String[] op1(String s, String t){
+        System.out.println("Performing operation 1: ");
         String[] res = new String[2];
         char c = s.toCharArray()[0];
         t = t + "" + c;
@@ -16,6 +26,7 @@ class Solution {
         return res;
     }
     public String[] op2(String t, String p){
+        System.out.println("Performing operation 2: ");
         String[] res = new String[2];
         char c = t.toCharArray()[t.length() - 1];
         p = p + "" + c;

@@ -23,3 +23,10 @@
 ## DP
 ### bottom up
 ### top down - backtracking with memoization
+
+![alt text](image.png)
+![alt text](image-1.png)
+
+## 1. read question twice
+## 2. rough, brute force idea
+## 3. hand draw/wrtie

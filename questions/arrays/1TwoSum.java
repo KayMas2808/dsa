@@ -1,18 +1,20 @@
 package questions.arrays;
 
+import java.util.HashMap;
 
-class Solution {
+class Solution {  
     public int[] twoSum(int[] nums, int target) {
-        for(int i = 1; i < nums.length; i++){
-            for(int j = i; j < nums.length; j++){
-                if(nums[j] == nums[j-i]){
-                    return new int[] {j, j-i};
-                }
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (hm.containsKey(complement)) {
+                return new int[] { hm.get(complement), i };  
             }
+            hm.put(nums[i], i);  
         }
-        return null;
-    }
-}
+        return new int[0];  
+    }  
+} 
 /*
  * Given an array of integers nums and an integer target, return indices of the
  * two numbers such that they add up to target.

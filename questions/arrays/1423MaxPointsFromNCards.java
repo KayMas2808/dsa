@@ -1,11 +1,30 @@
 package questions.arrays;
 
-class Solution {
-    public int maxScore(int[] cardPoints, int k) {
-        
-    }
-}
-/*
+class Solution {  
+    public int maxScore(int[] cardPoints, int k) {  
+        int l = k - 1;
+        int r = cardPoints.length - 1;
+        int lscore = 0;
+        int rscore = 0;
+        int max = 0;
+
+        for (int i = 0; i <= l; i++) {  
+            lscore += cardPoints[i];  
+        }
+        max = lscore;
+
+        while (l >= 0) {  
+            lscore -= cardPoints[l];
+            rscore += cardPoints[r];
+            max = Math.max(max, lscore + rscore);
+            l--;
+            r--;
+        }  
+  
+        return max;  
+    }  
+} 
+/* [1,2,3,4,5,6,1] k = 3;
  * There are several cards arranged in a row, and each card has an associated
  * number of points. The points are given in the integer array cardPoints.
  * 

@@ -7,6 +7,8 @@
 # sliding window
 ## start and end pointer
 
+### substring, max substring something -> think 2 pointer, sliding windows
+
 # binary search
 ## o(logn), only on sorted lists though
 

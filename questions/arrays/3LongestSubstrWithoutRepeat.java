@@ -1,32 +1,27 @@
 package questions.arrays;
 
-class Solution {
+import java.util.HashMap;  
+  
+class Solution {  
     public int lengthOfLongestSubstring(String s) {
-        int l = 0, r = 0;
-        if(s.length() == 0){
-            return 0;
-        }
-        if(s.length() == 1){
-            return 1;
-        }
+        if (s.length() == 0) return 0;
+  
+        HashMap<Character, Integer> seen = new HashMap<>();
+        int r = 0, l = 0;
         int maxLen = 0;
-        char[] arr = s.toCharArray();
-        while(r <= l){
+  
+        while (r < s.length()) {
+            char currentChar = s.charAt(r);
+            if (seen.containsKey(currentChar) && seen.get(currentChar) >= l) {
+                l = seen.get(currentChar) + 1;
+            }
+            seen.put(currentChar, r);
             maxLen = Math.max(maxLen, r - l + 1);
-            if(arr[l] != arr[r]){
-                r++;
-            }
-            else if(r - l < maxLen){
-                r++;
-                l++;
-            }else{
-                l++;
-            }
+            r++;
         }
         return maxLen;
     }
 }
-
 /*
  * Given a string s, find the length of the longest substring
  * without duplicate characters.

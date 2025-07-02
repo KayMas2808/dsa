@@ -7,6 +7,8 @@
 # sliding window
 ## start and end pointer
 
+### substring, max substring something -> think 2 pointer, sliding windows
+
 # binary search
 ## o(logn), only on sorted lists though
 
@@ -23,3 +25,10 @@
 ## DP
 ### bottom up
 ### top down - backtracking with memoization
+
+![alt text](image.png)
+![alt text](image-1.png)
+
+## 1. read question twice
+## 2. rough, brute force idea
+## 3. hand draw/wrtie

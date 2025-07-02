@@ -4,25 +4,25 @@ import java.util.HashMap;
 
 class Solution {
     public int totalFruit(int[] fruits) {
-        int l = 0, r = 0, max = 0;
-        HashMap<Integer, Integer> hm = new HashMap<>();
-        while(r < fruits.length){
-            if(hm.containsKey(fruits[r]) && hm.size() <= 2){
-                hm.put(fruits[r], hm.get(fruits[r])+1);
-                max = Math.max(max, l - r + 1);
-                r++;
-            }
-            else if(!hm.containsKey(fruits[r])){
-                hm.put(fruits[r], 1);
-                r++;
-            }
-            if(hm.size() > 2){
-                hm.put(fruits[l], hm.get(fruits[l]) - 1);
+        int l = 0, max = 0;
+        HashMap<Integer, Integer> basket = new HashMap<>();
+
+        for (int r = 0; r < fruits.length; r++) {
+            basket.put(fruits[r], basket.getOrDefault(fruits[r], 0) + 1);
+
+            while (basket.size() > 2) {
+                basket.put(fruits[l], basket.get(fruits[l]) - 1);
+                if (basket.get(fruits[l]) == 0) {
+                    basket.remove(fruits[l]);
+                }
                 l++;
             }
+            max = Math.max(max, r - l + 1);
         }
+        return max;
     }
 }
+
 /*
  * [3,3,3,1,2,1,1,2,3,3,4]
  * You are visiting a farm that has a single row of fruit trees arranged from

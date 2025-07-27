@@ -43,8 +43,8 @@ public class BFSDFS {
                 if (!visited.contains(neighbor)) {
                     q.add(neighbor);
                     visited.add(neighbor);
-                } else {
-                    System.out.println("cycle?" + neighbor);
+                } else { // detect cycle
+                    System.out.println("cycle? cycle." + neighbor);
                 }
             }
         }

@@ -321,6 +321,24 @@ Need to decide which shard to go to at application level.
     * Ngnix, HAProxy
 
 ### Solving problems
-* understand problem statement
-* break problem into sub problems, sub problems into more **if needed**.
-* solve each sub problem efficiently.
+* gather requirements - ask clarifying questions
+* estimate scale
+  * storage
+  * transactions per second
+* design goals
+  * CAP
+  * latency
+* design for a single server
+  * DB schema
+  * APIs
+  * Business logic
+
+
+## Design Patterns:
+1. Creational - deals with how objects are initiated
+2. Structural - how objects and classes are composed
+3. Behavioral - properties of objects and how they interact with each other.
+
+## Design Approaches:
+1. Bottom up - aligned with OOP
+2. Top down

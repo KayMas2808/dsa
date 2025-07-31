@@ -235,3 +235,92 @@ Need to decide which shard to go to at application level.
 * but what if orchestrator goes down? who orchestrates the orchestrator? another orchestrator! no thats dumb shut up.
 * we dont keep one orchestrator server, multiple. one is leader using leader election algos.
 * leader keeps eye on them all, when leader goes down, one promotes to leader and does its job
+
+## Big Data Tools
+* processing large amonunt of data? single machine choke/become slow.
+* => use a distributed system. we have coordinator and workers.
+* E.g. Apache spark
+* client makes request to coordinator, coordinator divides dataset into smaller, assign, take results, combine, response.
+* Coordinator Jobs
+  * incase of worker crash, move data to another machine
+  * restart worker
+  * combine results
+  * scaling and redistribution of data
+  * logging
+* user cases:
+  * train ML models
+  * analyse social networks, reccomendation systems
+  * take large amount of data from multiple sources and dump into a warehouse.
+
+## Consistency Deep Dive
+* only considered in distibuted stateful system.
+* > stateful - servers store some data for future use, else stateless.
+* mostly application servers are stateless, DBs are stateful.
+* data should be same across all nodes
+* 2 Types of Consistency:
+  1. Strong Consistency:
+    * any read after a write will always have most recent write.
+    * all replicas agree on current versions before acknowledging a write.
+    * system behaves as if only one copy exists.
+    * use case - banking system, trading app.
+    * Ways to achieve this:
+      1. Synchronous replication - on write, update all replicas before acknowledging write to client.
+      2. Quorum based protocols - leader follower setup.
+        * read quorum(r) - number of followers who return data for a read.
+        * write quorum(w) - numbers of followers acknowledging write.
+        * r + w > number of nodes for strong consistency.
+      3. Consensus Algorithms - write or read is successful when more than 50% nodes acknowledge it.
+   2. Eventual Consistency: 
+    * no guarantee for immediate consistency after a write, but after some time, all reads will return the same values.
+    * Consistency compromised, so higher availability.
+    * if 2 replicas have different data, conflict resolution protocols need to be written.
+    * use case - social media app, product catologues
+    * Ways to achieve eventual consistency:
+      1. Asynchronous replication - acknowledge writes immediately, propogate updates to replicas in background.
+      2. Quorum based protocols - r + w >= N
+      3. Vector Clocks
+      4. Gossip protocol - nodes exchange heartbeats(HTTP/TCP requests sent every 2-3s) with subset of other nodes, allows for detection of failed nodes.
+
+## Consistent Hashing
+* algo which tells which data belongs to which node.
+* used in stateful distributed applications or in distributed DBs
+* suppose data is stored as key value pairs.
+* could use node = Hash(key) % num(nodes)
+* fails when number of server changes, like in auto scaling
+* so consistent hashing needed.
+* pass node id/ip through hash, pass keys through hash like SHA256 etc.
+* ![alt text](consistenHashing.png)
+* key 2 and 5 belong to node 3 etc etc
+* if node 3 fail, 2,5 and 3 go to node 2
+
+## Data redundancy and recovery
+* copy of data in different servers and places.
+* incase of calamity like flood in data center, or disk drives fail
+* **Continuous Redundancy**: 2 servers, main and replica.
+  * any read or write done on main and replicated synchronously or asynchronously
+
+## Proxy
+* intermediary server that sits between client and server.
+* 2 Types:
+  1. Forward Proxy
+    * acts on behalf of client.
+    * when client makes request, this request goes through a forward proxy.
+    * client -> fwd proxy -> internet -> server
+    * server doesnt know client IP
+    * hides the client.
+    * VPN is an example.
+    * Use cases:
+      * access restricted content - geo locked for example.
+      * caching
+      * orgs can use to filter and control employee/student use.
+  2. Reverse Proxy
+    * acts on behalf of server.
+    * client -> internet -> reverse proxy -> server
+    * client doesnt know server => hides server
+    * e.g. Load Balancer, SSL termination, Caching - static content, Security
+    * Ngnix, HAProxy
+
+### Solving problems
+* understand problem statement
+* break problem into sub problems, sub problems into more **if needed**.
+* solve each sub problem efficiently.

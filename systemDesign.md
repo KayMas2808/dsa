@@ -168,3 +168,67 @@ Realtime Pubsub (publish/subscribe)
   - client 1 is on server 1, client 2 is on server 2. how do they send message?
   - client 1 sends to server 1, server 1 to redis pubsub to server 2 to client 2.
   - ![alt text](pubsub.png)
+
+
+Event Driven Architecture (EDA)
+- pattern where apps react to events like state changes or messages, rather than request response
+- Example:
+  - service like amazon -> has order service, payment service and when payment is complete, shows the user a success page.
+  - it also sends an update to the inventory service to update the numbers, and a email service sends a confirmation email as well to the user.
+  - the notification(email) and inventory service dont have anything to do with the success page shown, so no need to make the client wait for them.
+  - ![alt text](eda-eg.png)
+  - so we put these 2 tasks in a message broker and forget about them, now consumers duty to deal with them
+  - ![alt text](eda-eg2.png)
+- Why use EDA?
+  1. Decoupling - earlier, if suppose inventory service went down, it would affect the whole system, since order service was calling it. 
+  2. Resilience - one fails, others un affected.
+  3. Scalability - horizontal scaling for individual services.
+- Types of EDA patterns:
+  1. Simple event notification:
+    - like above amazon example. producer only tells that event occures, consumers need to fetch extra details if they need it.
+    - so maybe producer puts only order id, consumers fetch info fron DB using that.
+  2. Event carried state transfer:
+    - same as simple event, but producer sends required information in the message, so consumers dont need to do DB transactions.
+    - faster, but larger event sizes => more broker storage and bandwith costs. 
+  3. Event sourcing:
+    - instead of just saving current state of app, store sequence of all state changing events.
+    - E.g. 
+      - user added item A
+      - user added item B
+      - user cancelled order.
+    - allows for audit trail, temporal queries, debugging, complex business logic.
+  4. Event sourcing with CQRS(command query responsibility segragation):
+    - separate responsibility of handling *commands*(requests that change state) and *queries*(requests that read state)
+    - in event sourcing + CQRS, event stores becomes authorotative source for commands, and read models are built for queries, by subscribing to events from event stores.
+    - e.g. 
+      - user wants to perform action like place order -> sends command to order service, order services validates it and if valid generates events which are persisted in event store.
+      - then published to message broker.
+      - separate read models built for lets say display 1 order, display all orders, reporting etc.
+    - Advantages:
+      - can get optimized performance on both read and write models.
+      - scalability
+      - flexibility
+      - better business understanding
+
+Distributed Systems:
+- work is done by a set of multiple machines instead of one. e.g. Sharding, horizontal scaling.
+- thinking of machines' coordination and division of task is important
+- Common Implementation way: one leader server, all others are followers.
+- leader takes requests from user, assigns work to followers, combines their results, and returns them to client.
+- leader needs to be decided when:
+  - startup
+  - leader goes down - any one follower comes forward. need followers to quickly detect when leader is down.
+- leader election algorithms:
+  - LCR Algo - O(N^2)
+  - HS Algo - O(NlogN)
+  - Bully Algo - O(N)
+  - Gossip protocol - O(logN)
+- E.g. of Distributed DBs - mongoDB, cassandra, DynamoDB
+
+Auto Recoverable System Using Leader Election
+- in a horizontal scaled system, we want that at all times, atleast 4 servers are there to serve requests.
+- monitor servers at all times and if one goes down manually restart it? nooooo
+- Auto Detection and Restart - **Orcestrator**
+- but what if orchestrator goes down? who orchestrates the orchestrator? another orchestrator! no thats dumb shut up.
+- we dont keep one orchestrator server, multiple. one is leader using leader election algos.
+- leader keeps eye on them all, when leader goes down, one promotes to leader and does its job

@@ -339,6 +339,25 @@ Need to decide which shard to go to at application level.
 2. Structural - how objects and classes are composed
 3. Behavioral - properties of objects and how they interact with each other.
 
+## Location thingys
+1. Geo Sharding - sharding based on location.
+   * but location will be x-coordinate and y-coordinate. then we can either have fast lookup on only one of these, since only one primary hash per table.
+   * so 2 tables? still too much lookup time.
+   * so we need to convert this 2d data into 1d data.
+   * we use hilbert curves to do this.
+     - divide map into grid.
+     - for each grid box, make a line like shown
+     - <img width="715" height="504" alt="image" src="https://github.com/user-attachments/assets/55d8a5c6-2fdf-4579-9152-7707496c45db" />
+     - now divide this line into 4 segments, and based on that, assign the segments a binary number.
+     - <img width="712" height="501" alt="image" src="https://github.com/user-attachments/assets/3a3c299d-2396-49d6-9850-d764b9667f58" />
+     - now we repeat this for multiple boxes.
+     - <img width="673" height="476" alt="image" src="https://github.com/user-attachments/assets/b1e05ad1-956e-49e2-a796-77253fb89eb3" />
+     - now we can rotate the bottom 2 and then make a line connecting the lines in the boxes.
+     - Google S2 is a similar thing, but takes into account the earth's curvature.
+
+
+   
+
 ## Design Approaches:
 1. Bottom up - aligned with OOP
 2. Top down

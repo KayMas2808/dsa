@@ -340,6 +340,7 @@ Need to decide which shard to go to at application level.
 3. Behavioral - properties of objects and how they interact with each other.
 
 ## Location thingys
+[Video Explaining](https://www.youtube.com/watch?v=OcUKFIjhKu0&ab_channel=GauravSen)
 1. Geo Sharding - sharding based on location.
    * but location will be x-coordinate and y-coordinate. then we can either have fast lookup on only one of these, since only one primary hash per table.
    * so 2 tables? still too much lookup time.
@@ -347,13 +348,15 @@ Need to decide which shard to go to at application level.
    * we use hilbert curves to do this.
      - divide map into grid.
      - for each grid box, make a line like shown
-     - <img width="715" height="504" alt="image" src="https://github.com/user-attachments/assets/55d8a5c6-2fdf-4579-9152-7707496c45db" />
+     - ![alt text](geoSharding1.png)
      - now divide this line into 4 segments, and based on that, assign the segments a binary number.
-     - <img width="712" height="501" alt="image" src="https://github.com/user-attachments/assets/3a3c299d-2396-49d6-9850-d764b9667f58" />
+     - ![alt text](geoSharding2.png)
      - now we repeat this for multiple boxes.
-     - <img width="673" height="476" alt="image" src="https://github.com/user-attachments/assets/b1e05ad1-956e-49e2-a796-77253fb89eb3" />
+     - ![alt text](geoSharding3.png)
      - now we can rotate the bottom 2 and then make a line connecting the lines in the boxes.
-     - Google S2 is a similar thing, but takes into account the earth's curvature.
+     - Google S2 is a similar thing, but takes into account the earth's curvature. it is a library that converts the lat and long to a cell id.
+   * now all locations dont have same trafic, amazon rainforest vs goddamn bangalore, so something like a load score is assigned to the shard. 
+2. QuadTree - tree in which each node has 4 children, dividing a location into 4 different quadrants. 
 
 
    

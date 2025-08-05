@@ -58,6 +58,7 @@
       * so from n/2 to 0 index, do downheap
 
 ## Dynamic Programming (DP)
+![alt text](DPSteps.png)
 * **Bottom-Up**
 * **Top-Down:** Backtracking with memoization.
 

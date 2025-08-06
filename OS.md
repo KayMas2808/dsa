@@ -84,8 +84,6 @@ The most common example of spooling is printing. Documents to be printed are sto
 
 ## What is semaphore and mutex (Differences might be asked)? Define Binary semaphore.
 
-*(Self-correction: The provided text only defines Belady's Anomaly, Starving, and Aging, not semaphore and mutex directly, except for mentioning semaphores as a solution to the Producer-Consumer problem. I will add a general definition based on common OS knowledge to complete this section based on the heading.)*
-
 ### Semaphore:
 A semaphore is a signaling mechanism used in operating systems to control access to common resources in a concurrent system like a multi-programming environment. It is a variable or abstract data type used for controlling access, by multiple processes, to a common resource in a parallel programming or multi-user environment.
 
@@ -150,7 +148,6 @@ A real-time operating system (RTOS) is a special-purpose operating system used i
 
 ## Difference between main memory and secondary memory.
 
-*(Self-correction: The provided text only lists the heading, not the content. I will add a general definition based on common OS knowledge.)*
 
 ### Main Memory (RAM):
 * **Volatility:** Volatile (data is lost when power is off).

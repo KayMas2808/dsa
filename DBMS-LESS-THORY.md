@@ -148,12 +148,12 @@ SELECT name FROM employees e WHERE EXISTS (SELECT 1 FROM departments d WHERE d.m
 
 ## 4. ACID Properties (Example: Payment System)
 
-| Property   | Meaning | Example |
-|------------|---------|---------|
-| Atomicity  | All-or-nothing | Debit sender and credit receiver must both succeed |
-| Consistency| Valid state transitions | No negative balances, valid account numbers |
-| Isolation  | Transactions don’t interfere | Two transfers don’t corrupt each other |
-| Durability | Changes persist after crash | Once committed, payment is not lost |
+| Property   | Meaning                      | Example                                            |
+|------------|------------------------------|----------------------------------------------------|
+| Atomicity  | All-or-nothing               | Debit sender and credit receiver must both succeed |
+| Consistency| Valid state transitions      | No negative balances, valid account numbers        |
+| Isolation  | Transactions don’t interfere | Two transfers don’t corrupt each other             |
+| Durability | Changes persist after crash  | Once committed, payment is not lost                |
 
 ---
 

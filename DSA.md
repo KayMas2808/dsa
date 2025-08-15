@@ -79,11 +79,12 @@
 1.  **Selection Sort:** Find the minimum element and swap it with the element at the current position.
 2.  **Bubble Sort:** Repeatedly swap adjacent elements to push the maximum element to the end.
 3.  **Insertion Sort:** Take an element and insert it into its correct position within the sorted portion of the array.
-4.  **Merge Sort:**
+                        - start from 2nd element, compare with all previous elements, while it is smaller, swap.
+5.  **Merge Sort:**
     * **Divide:** Split the array into two halves (left and right) using a midpoint.
     * **Sort:** Recursively sort the left and right halves.
     * **Merge:** Combine the sorted left and right halves.
-5.  **Quick Sort:**
+6.  **Quick Sort:**
     * Pick a pivot element. All elements to the left of the pivot should be smaller, and all to the right should be larger.
     * Often, the first element is chosen as the pivot.
     * **Partitioning Process:**

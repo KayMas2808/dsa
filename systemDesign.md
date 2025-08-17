@@ -365,4 +365,6 @@ Need to decide which shard to go to at application level.
 
 ## Good stuff
 [How Search Engines Work](https://www.youtube.com/watch?v=0LTXCcVRQi0&ab_channel=InterviewPen)
-[Saga Pattern/2PC](https://youtu.be/d2z78guUR4g?si=AijPGnU__FN1Vqmf)
+[Distributed Transactions - Saga Pattern/2PC](https://youtu.be/d2z78guUR4g?si=AijPGnU__FN1Vqmf)
+[Shifting from Monoliths to Microservices - Strangler Pattern](https://youtu.be/DpuQ3-7e-rY?si=L_O9nmf_iPjx1hTJ)
+

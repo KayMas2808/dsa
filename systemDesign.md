@@ -360,6 +360,8 @@ Need to decide which shard to go to at application level.
    1. if a quad tree node has more than k values, we can make it have 4 more children, to increase precision.
 
 
+##Saga patterns - https://youtu.be/d2z78guUR4g?si=AijPGnU__FN1Vqmf 
+
    
 
 ## Design Approaches:

@@ -357,12 +357,7 @@ Need to decide which shard to go to at application level.
      - Google S2 is a similar thing, but takes into account the earth's curvature. it is a library that converts the lat and long to a cell id.
    * now all locations dont have same trafic, amazon rainforest vs goddamn bangalore, so something like a load score is assigned to the shard. 
 2. QuadTree - tree in which each node has 4 children, dividing a location into 4 different quadrants. 
-   1. if a quad tree node has more than k values, we can make it have 4 more children, to increase precision.
-
-
-##Saga patterns - https://youtu.be/d2z78guUR4g?si=AijPGnU__FN1Vqmf 
-
-   
+   1. if a quad tree node has more than k values, we can make it have 4 more children, to increase precision. 
 
 ## Design Approaches:
 1. Bottom up - aligned with OOP
@@ -370,3 +365,4 @@ Need to decide which shard to go to at application level.
 
 ## Good stuff
 [How Search Engines Work](https://www.youtube.com/watch?v=0LTXCcVRQi0&ab_channel=InterviewPen)
+[Saga Pattern/2PC](https://youtu.be/d2z78guUR4g?si=AijPGnU__FN1Vqmf)

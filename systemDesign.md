@@ -335,9 +335,30 @@ Need to decide which shard to go to at application level.
 
 
 ## Design Patterns:
-1. Creational - deals with how objects are initiated
-2. Structural - how objects and classes are composed
-3. Behavioral - properties of objects and how they interact with each other.
+[Playlist](https://youtube.com/playlist?list=PLJq-63ZRPdBtLBbzA2fIG9mOPclbPDSxq&si=fhG489dFesbWBhEa)
+1. Creational - deals with how objects are created, for flexibility and scalability.
+   - Singleton Pattern - ensures that a class has only one instance, and provides a global access point to it.
+     - useful for managing shared resources like config manager, logging service, thread pool. here, we need a single point of control.
+     - have a private constructor, and a static method to return the instance.
+     - ![alt text](singleton.png)
+     - we need to ensure if instance is not created, 2 instances are not made by 2 different threads, so need synchronisation.
+     - but if we make whole mehod synchronised, it is expensive, so we check if its null first
+     - so we make only the creation part sync.
+     - lazy initialization - object only created when needed, since it may be heavy or expensive to create.
+   - Factory Method Pattern - when you have a class that needs to create objects, but you want its subclasses to be responsible for specifying which objects to create.
+     - example - bean injection in spring.
+     - ![alt text](factory.png)
+   - Obeserver Pattern - multiple objects need to react when one object changes. can notify each object manually, but bad.
+     - ![alt text](observer.png)
+   - Strategy Pattern - if i want to implement multiple algorithms, for example, sorting by different criteria.
+   - each algo has its own class, can be called based on what is needed, add new by just making a new calls.
+     - ![alt text](strategy.png)
+   - Decorator Pattern - example scenario - a text editor. at first, just basic, then adding features like spell check, auto save and turn them on if user decides to.
+     - cant keep making if else statements and sub classes.
+     - ![alt text](decorator.png)
+2. Structural - how classes and objects are organized for better structure.
+3. Behavioral - how the objects communicate.
+
 
 ## Location thingys
 [Video Explaining](https://www.youtube.com/watch?v=OcUKFIjhKu0&ab_channel=GauravSen)

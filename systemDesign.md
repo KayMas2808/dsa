@@ -340,7 +340,7 @@ Need to decide which shard to go to at application level.
    - Singleton Pattern - ensures that a class has only one instance, and provides a global access point to it.
      - useful for managing shared resources like config manager, logging service, thread pool. here, we need a single point of control.
      - have a private constructor, and a static method to return the instance.
-     - ![alt text](singleton.png)
+     - ![Singleton pattern](singleton.png)
      - we need to ensure if instance is not created, 2 instances are not made by 2 different threads, so need synchronisation.
      - but if we make whole mehod synchronised, it is expensive, so we check if its null first
      - so we make only the creation part sync.
@@ -359,6 +359,7 @@ Need to decide which shard to go to at application level.
    - Command Pattern - decoupls object that trigeers the action, from the one that performs it.
      - ![alt text](command.png)
    - Adapter Pattern - acts as a bridge between two incompatible interfaces, allowing them to work together.
+     - ![alt text](adapter.png)
 2. Structural - how classes and objects are organized for better structure.
 3. Behavioral - how the objects communicate.
 

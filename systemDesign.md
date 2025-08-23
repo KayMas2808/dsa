@@ -356,6 +356,9 @@ Need to decide which shard to go to at application level.
    - Decorator Pattern - example scenario - a text editor. at first, just basic, then adding features like spell check, auto save and turn them on if user decides to.
      - cant keep making if else statements and sub classes.
      - ![alt text](decorator.png)
+   - Command Pattern - decoupls object that trigeers the action, from the one that performs it.
+     - ![alt text](command.png)
+   - Adapter Pattern - acts as a bridge between two incompatible interfaces, allowing them to work together.
 2. Structural - how classes and objects are organized for better structure.
 3. Behavioral - how the objects communicate.
 

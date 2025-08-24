@@ -388,6 +388,13 @@ Need to decide which shard to go to at application level.
 1. Bottom up - aligned with OOP
 2. Top down
 
+## SOLID Principles
+1. Single Responsibility Principle - each class should have only one reason to change
+2. Open Closed Principle - entities should be extensible to extension but closed to modification.
+3. Liskov Substitution Principle - replace superclass object with its subclass object
+4. Interface Segregation Principle - many client specific interfaces is better than one general-purpose interface
+5. Dependency Inversion Principle - high level modules shouldnt depend on low level module
+
 ## Good stuff
  - [How Search Engines Work](https://www.youtube.com/watch?v=0LTXCcVRQi0&ab_channel=InterviewPen)
  - [Distributed Transactions - Saga Pattern/2PC](https://youtu.be/d2z78guUR4g?si=AijPGnU__FN1Vqmf)

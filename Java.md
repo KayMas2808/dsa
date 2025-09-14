@@ -40,3 +40,12 @@
 * **this** keyword - reference to current object
 * **super** keyword - refer to immediate parent class, if using for parent constructor, super() must be first statement in child constructor.
 * Why are strings immutable - string pool, security, thread safety.
+* String Buffer - thread safe (synchronized), less efficient.
+* String Builder - not thread safe, more efficient.
+* Abstract Classes VS Interfaces: multiple inheritance in interfaces, variables are public, static final, and methods are public.
+* Aggregation and Composition:
+  * ![alt text](aggregationComposition.png)
+* Anonymous inner class:
+  * ![alt text](anonymousClass.png)
+* Volatile: ensure changes made to a variable by one thread are immediately visible to all threads.
+* Final - prevent variable value change, class inheritance, or method overriding.

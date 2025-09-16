@@ -59,6 +59,7 @@
    * ensures only one instance of class throughout system.
    * reduce resource wastage, ensure consistent behavior
    * useful for managing shared resources like config manager, logging service, thread pool. here, we need a single point of control.
+   * no competing for access
    * have a private constructor, and a static method to return the instance.
    * ![Singleton pattern](singleton.png)
    * we need to ensure if instance is not created, 2 instances are not made by 2 different threads, so need synchronisation.
@@ -88,18 +89,146 @@
    * Use Cases: complex meals(toppings, drinks), documents, user profile
 
 5. **Prototype Pattern**
+   * create new object by cloning an existing prototype and modifying whats needed.
+   * useful when working with similar objects.
+   * e.g. - video game characters - level increases, new class now? new name then what?
+   * clone the prototype and modify only the necessary attriubutes
 
 
 ## Behavioral Patterns
+- communication between objects
 
 1. Obeserver Pattern
    * multiple objects need to react when one object changes. can notify each object manually, but bad.
-   * ![alt text](observer.png)
+   * one object(the subject) can notify other objecs(observers) whenever there is change in its state
+   * E.g.: youtube channel, notify for video upload. not all subs have the same preference set.
+     * some are youtube notif, some email, etc.
+     * different impelmentations for each. now objects for each subscriber based on what they have subbed for.
+        ```java
+        public class EmailSubscriber implements Subscriber {
+        private String email;
+        public EmailSubscriber(String email) {
+            this.email = email;
+        }
+        @Override
+        public void update(String video) {
+            System.out.println(
+                "Sending email to " + email + ": New video uploaded: " + video);
+        }
+        }
+        public class PushNotificationSubscriber implements Subscriber {
+        private String userDevice;
+        public PushNotificationSubscriber(String userDevice) {
+            this.userDevice = userDevice;
+        }
+        @Override
+        public void update(String video) {
+            System.out.println("Sending push notification to " + userDevice
+                + ": New video uploaded: " + video);
+        }
+        }
+        public class YouTubeChannelImpl implements YouTubeChannel {
+        private List<Subscriber> subscribers =
+            new ArrayList<>(); // List of subscribers
+        private String video; // The video that will be uploaded
+        @Override
+        public void addSubscriber(Subscriber subscriber) {
+            subscribers.add(subscriber); // Add a subscriber to the channel
+        }
+        @Override
+        public void removeSubscriber(Subscriber subscriber) {
+            subscribers.remove(subscriber); // Remove a subscriber from the channel
+        }
+        @Override
+        public void notifySubscribers() {
+            // Notify all subscribers about the new video
+            for (Subscriber subscriber : subscribers) {
+            subscriber.update(video); // Call update() for each subscriber
+            }
+        }
+        public void uploadNewVideo(String video) {
+            this.video = video; // Set the video that is being uploaded
+            notifySubscribers(); // Notify all subscribers about the new video
+        }
+        }
+        public class Main {
+            public static void main(String[] args) {
+            // Create a YouTube channel
+            YouTubeChannelImpl channel = new YouTubeChannelImpl();
+            // Create subscribers
+            YouTubeSubscriber alice = new YouTubeSubscriber("Alice");
+            YouTubeSubscriber bob = new YouTubeSubscriber("Bob");
+            // Subscribe to the channel
+            channel.addSubscriber(alice);
+            channel.addSubscriber(bob);
+            // Upload a new video and notify subscribers
+            channel.uploadNewVideo("Java Design Patterns Tutorial");
+            channel.removeSubscriber(bob);
+            channel.uploadNewVideo("Observer Pattern in Action");
+        }
+        }
+        ```
 
 2. Strategy Pattern
    * if i want to implement multiple algorithms, for example, sorting by different criteria.
+   * use different strategy decided on runtime.
    * each algo has its own class, can be called based on what is needed, add new by just making a new calls.
-   * ![alt text](strategy.png)
+   * use in sorting methods, payment processor, shipping costs.
+   * E.g.: payment processor -> multiple methods, each with diff implementation. dont wanna do lots of if-else, or lots of different interfaces/abstractions (still if-else when calling them). 
+     * instead, different classes for each strategy, then one class that has strategy member, and a process method, and a set method, to change strategies.
+        ```java
+            // Concrete strategy for crypto payment
+        public class CryptoPayment implements PaymentStrategy {
+        public void processPayment() {
+            System.out.println("Processing crypto payment...");
+        }
+        }
+
+        // Concrete strategy for Stripe payment
+        public class StripePayment implements PaymentStrategy {
+        public void processPayment() {
+            System.out.println("Processing Stripe payment...");
+        }
+        }
+
+        public class PaymentProcessor {
+        private PaymentStrategy paymentStrategy; // Reference to a payment strategy
+        // Constructor to set the payment strategy
+        public PaymentProcessor(PaymentStrategy paymentStrategy) {
+            this.paymentStrategy = paymentStrategy;
+        }
+
+        // Process payment using the current strategy
+        public void processPayment() {
+            paymentStrategy
+                .processPayment(); // Delegate the payment processing to the strategy
+        }
+
+        // Dynamically change payment strategy at runtime
+        public void setPaymentStrategy(PaymentStrategy paymentStrategy) {
+            this.paymentStrategy = paymentStrategy;
+        }
+        }
+
+        public class Main {
+        public static void main(String[] args) {
+            // Create strategy instances for each payment type
+            PaymentStrategy crypto = new CryptoPayment();
+            PaymentStrategy stripe = new StripePayment();
+            // Use the Strategy Pattern to process payments
+            PaymentProcessor processor =
+                new PaymentProcessor(creditCard); // Initially using CreditCardPayment
+            processor.processPayment(); // Processing credit card payment...
+
+            // Switch to Crypto
+            processor.setPaymentStrategy(crypto);
+            processor.processPayment(); // Processing crypto payment...
+            // Switch to Stripe
+            processor.setPaymentStrategy(stripe);
+            processor.processPayment(); // Processing Stripe payment...
+        }
+        }
+        ```
 
 3. **Iterator**
 4. **Command**

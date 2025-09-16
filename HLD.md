@@ -334,36 +334,6 @@ Need to decide which shard to go to at application level.
   * Business logic
 
 
-## Design Patterns:
-[Playlist](https://youtube.com/playlist?list=PLJq-63ZRPdBtLBbzA2fIG9mOPclbPDSxq&si=fhG489dFesbWBhEa)
-1. Creational - deals with how objects are created, for flexibility and scalability.
-   - Singleton Pattern - ensures that a class has only one instance, and provides a global access point to it.
-     - useful for managing shared resources like config manager, logging service, thread pool. here, we need a single point of control.
-     - have a private constructor, and a static method to return the instance.
-     - ![Singleton pattern](singleton.png)
-     - we need to ensure if instance is not created, 2 instances are not made by 2 different threads, so need synchronisation.
-     - but if we make whole mehod synchronised, it is expensive, so we check if its null first
-     - so we make only the creation part sync.
-     - lazy initialization - object only created when needed, since it may be heavy or expensive to create.
-   - Factory Method Pattern - when you have a class that needs to create objects, but you want its subclasses to be responsible for specifying which objects to create.
-     - example - bean injection in spring.
-     - ![alt text](factory.png)
-   - Obeserver Pattern - multiple objects need to react when one object changes. can notify each object manually, but bad.
-     - ![alt text](observer.png)
-   - Strategy Pattern - if i want to implement multiple algorithms, for example, sorting by different criteria.
-   - each algo has its own class, can be called based on what is needed, add new by just making a new calls.
-     - ![alt text](strategy.png)
-   - Decorator Pattern - example scenario - a text editor. at first, just basic, then adding features like spell check, auto save and turn them on if user decides to.
-     - cant keep making if else statements and sub classes.
-     - ![alt text](decorator.png)
-   - Command Pattern - decoupls object that trigeers the action, from the one that performs it.
-     - ![alt text](command.png)
-   - Adapter Pattern - acts as a bridge between two incompatible interfaces, allowing them to work together.
-     - ![alt text](adapter.png)
-2. Structural - how classes and objects are organized for better structure.
-3. Behavioral - how the objects communicate.
-
-
 ## Location thingys
 [Video Explaining](https://www.youtube.com/watch?v=OcUKFIjhKu0&ab_channel=GauravSen)
 1. Geo Sharding - sharding based on location.
@@ -387,13 +357,6 @@ Need to decide which shard to go to at application level.
 ## Design Approaches:
 1. Bottom up - aligned with OOP
 2. Top down
-
-## SOLID Principles
-1. Single Responsibility Principle - each class should have only one reason to change
-2. Open Closed Principle - entities should be extensible to extension but closed to modification.
-3. Liskov Substitution Principle - replace superclass object with its subclass object
-4. Interface Segregation Principle - many client specific interfaces is better than one general-purpose interface
-5. Dependency Inversion Principle - high level modules shouldnt depend on low level module
 
 ## Distributed Transactions
 1. 2 Phase commit

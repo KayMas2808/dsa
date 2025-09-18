@@ -230,7 +230,8 @@
         }
         ```
 
-3. **Iterator**
+3. **Iterator**: traverse a collection of items without exposing underlying implementation details.
+   * example - playlist iterator -> can be favorites, shuffle, normal playlist
 4. **Command**
     * decouples object that trigeers the action, from the one that performs it.
    * ![alt text](command.png)
@@ -238,7 +239,7 @@
 6. **State Design**
 7. **Template Design**
 8. **Chain of Responsibility**
-9. **Visitor**
+9.  **Visitor**
 10. **Memento**
 
 ## Structural Patterns

@@ -73,6 +73,17 @@
 3.  Hand draw/write out the solution.
 
 ---
+# Binary Trees
+1. **Complete binary tree:** all nodes have 2 children, at last level, can have 1, but must be filled left to right
+2. **Full/Strict BT:** either 0 children, or 2 children, all nodes.
+3. **Perfect binary tree:** all have 2, all leaf nodes on same level.
+4. **Height balanced tree:** avg height O(logn)
+5. **Skewed binary tree:** avg height O(n), every node 1 child
+6. **Ordered binary tree:** every node follos some property e.g. BST
+
+- Number of nodes in perfect BT: 2^(h+1) - 1
+- Number of lead nodes in perfect BT: 2^h
+- If N leaves, min. log(n)+1 nodes
 
 # Sortings
 
@@ -95,3 +106,4 @@
     * Recursively apply to sub-arrays.
 
 ---
+

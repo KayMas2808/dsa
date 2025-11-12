@@ -85,6 +85,17 @@
 - Number of lead nodes in perfect BT: 2^h
 - If N leaves, min. log(n)+1 nodes
 
+# AVL Tree
+- self balancing binary tree
+- max diff between heights of left and right sub trees is 1
+- **Insertion:** check bottom up for first unbalanced node. 4 cases
+  1. right heavy (height(node.right) - height(node.left) > 1)
+     1a. right-right -> leftRotate(node)
+     1b. right-left -> rightRotate(node.right) [makes it same as 1a] -> leftRotate(node)
+  2. left heavy (height(node.left) - height(node.right) > 1)
+     2a. left-left -> rightRotate(node)
+     2b. left-right -> leftRotate(node.left) [makes it same as 2a] -> rightRotate(node)
+
 # Sortings
 
 1.  **Selection Sort:** Find the minimum element and swap it with the element at the current position.
@@ -106,4 +117,5 @@
     * Recursively apply to sub-arrays.
 
 ---
+
 

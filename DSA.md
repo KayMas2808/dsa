@@ -23,6 +23,38 @@
     * Suitable for exploring all paths.
     * **Backtracking:** An extension of DFS.
 
+  # Binary Trees
+1. **Complete binary tree:** all nodes have 2 children, at last level, can have 1, but must be filled left to right
+2. **Full/Strict BT:** either 0 children, or 2 children, all nodes.
+3. **Perfect binary tree:** all have 2, all leaf nodes on same level.
+4. **Height balanced tree:** avg height O(logn)
+5. **Skewed binary tree:** avg height O(n), every node 1 child
+6. **Ordered binary tree:** every node follos some property e.g. BST
+
+- Number of nodes in perfect BT: 2^(h+1) - 1
+- Number of lead nodes in perfect BT: 2^h
+- If N leaves, min. log(n)+1 nodes
+
+# AVL Tree
+- self balancing binary tree
+- max diff between heights of left and right sub trees is 1
+- **Insertion:** check bottom up for first unbalanced node. 4 cases
+  1. right heavy (height(node.right) - height(node.left) > 1)
+     1a. right-right -> leftRotate(node)
+     1b. right-left -> rightRotate(node.right) [makes it same as 1a] -> leftRotate(node)
+  2. left heavy (height(node.left) - height(node.right) > 1)
+     2a. left-left -> rightRotate(node)
+     2b. left-right -> leftRotate(node.left) [makes it same as 2a] -> rightRotate(node)
+
+# Segment Tree
+- perfrom operation on a range -> sum, product, max, min, avg in O(logn)
+- O(logn) updates.
+- binary tree which has info about range/interval and operation(sum, prod etc)
+- <img width="1713" height="1052" alt="image" src="https://github.com/user-attachments/assets/88b579c5-afef-4837-a2b2-2532219755db" />
+- it is full binary tree -> 2N-1 nodes.
+- => time to build -> O(n) [done in post order traversal manner], update O(logn) [done in post order], query O(logn)
+
+
 ## **Priority Queue (Heaps)**
 * Helpful in finding elements that satisfy a specific condition (e.g., finding a largest number).
 * Stored as an array but conceptually represented as a tree.
@@ -73,28 +105,6 @@
 3.  Hand draw/write out the solution.
 
 ---
-# Binary Trees
-1. **Complete binary tree:** all nodes have 2 children, at last level, can have 1, but must be filled left to right
-2. **Full/Strict BT:** either 0 children, or 2 children, all nodes.
-3. **Perfect binary tree:** all have 2, all leaf nodes on same level.
-4. **Height balanced tree:** avg height O(logn)
-5. **Skewed binary tree:** avg height O(n), every node 1 child
-6. **Ordered binary tree:** every node follos some property e.g. BST
-
-- Number of nodes in perfect BT: 2^(h+1) - 1
-- Number of lead nodes in perfect BT: 2^h
-- If N leaves, min. log(n)+1 nodes
-
-# AVL Tree
-- self balancing binary tree
-- max diff between heights of left and right sub trees is 1
-- **Insertion:** check bottom up for first unbalanced node. 4 cases
-  1. right heavy (height(node.right) - height(node.left) > 1)
-     1a. right-right -> leftRotate(node)
-     1b. right-left -> rightRotate(node.right) [makes it same as 1a] -> leftRotate(node)
-  2. left heavy (height(node.left) - height(node.right) > 1)
-     2a. left-left -> rightRotate(node)
-     2b. left-right -> leftRotate(node.left) [makes it same as 2a] -> rightRotate(node)
 
 # Sortings
 
@@ -117,5 +127,6 @@
     * Recursively apply to sub-arrays.
 
 ---
+
 
 

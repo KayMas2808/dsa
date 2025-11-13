@@ -22,6 +22,10 @@
     * Uses a stack.
     * Suitable for exploring all paths.
     * **Backtracking:** An extension of DFS.
+  # Bipartite graph
+    * if i can color all nodes with 2 colors such that no 2 adjacent nodes have the same color, its bipartite
+    * no cycles -> BP graph. cycle of even length -> BP graph.
+    * cycle of odd length -> non BP graph.
 
   # Binary Trees
 1. **Complete binary tree:** all nodes have 2 children, at last level, can have 1, but must be filled left to right
@@ -127,6 +131,7 @@
     * Recursively apply to sub-arrays.
 
 ---
+
 
 
 
